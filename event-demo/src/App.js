@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import NTK_EventForm1 from './components/NTK_EventForm1'
+import NTK_EventForm2 from './components/NTK_EventForm2';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <div className='container'>
+        <h1>Event Form Demo</h1>
+        <NTK_EventForm1 />
+        <NTK_EventForm2 />
+      </div>
+    );
+  }
 }
-
-export default App;
