@@ -15,12 +15,18 @@ export default class NTK_EventForm3 extends Component {
             name:"K22CNT4-ReactsJs"
         })
     }
+    handlechangejob=()=>{
+        this.setState({
+            job: "Công nghệ phần mềm"
+        })
+    }
   render() {
     return (
       <div className='alert alert-primary'>
             <h2>Thay đổi dữ liệu trong state</h2>
             <p>Dữ liệu: {this.state.name} - {this.state.job}</p>
             <button onClick={this.handlechangeName}>Thay đổi name</button>
+            <button onClick={this.handlechangejob}>Thay đổi Job</button>
       </div>
     )
   }
