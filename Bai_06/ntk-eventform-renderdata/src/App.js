@@ -15,6 +15,16 @@ export default class App extends Component {
       ]
     }
   }
+
+  ntkHandleSubmit = (param)=>{
+    console.log("App:",param)
+    //them vao mang du lieu products
+    let {products} = this.state;
+    products.push(param);
+    this.setState({
+      products:products
+    })
+  }
   render() {
     return (
       <div className='container border mt-5'>
@@ -22,7 +32,7 @@ export default class App extends Component {
           <hr/>
           <NtkProductslist renderProducts={this.state.products}/>
           <hr/>
-          <NtkProductsadd/>
+          <NtkProductsadd onSummit = {this.ntkHandleSubmit}/>
       </div>
     )
   }

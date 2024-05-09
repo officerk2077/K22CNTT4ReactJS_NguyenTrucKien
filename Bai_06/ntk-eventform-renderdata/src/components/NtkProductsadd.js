@@ -9,7 +9,20 @@ export default class NtkProductsadd extends Component {
             status:0
         }
     }
-  render() {
+    ntkHandleChange = (event)=>{
+        let name = event.target.name;
+        let value = event.target.value;
+        this.setState({
+            [name]:value
+        })
+    }
+    //submit form
+    ntkHandleSubmit = (ev)=>{
+        ev.preventDefault();
+
+        this.props.onSummit(this.state);
+    }
+    render() {
     return (
         <div>
             <h2>Thêm mới sản phẩm</h2>
@@ -24,6 +37,7 @@ export default class NtkProductsadd extends Component {
                 id='id'
                 name='id'
                 value={this.state.id}
+                onChange={this.ntkHandleChange}
              />
         </div>
         <div className="input-group mb-3">
@@ -35,6 +49,7 @@ export default class NtkProductsadd extends Component {
                 className="form-control"
                 name='title'
                 value={this.state.title}
+                onChange={this.ntkHandleChange}
              />
         </div>
         <div className="input-group mb-3">
@@ -46,9 +61,10 @@ export default class NtkProductsadd extends Component {
                 className="form-control"
                 name='status'
                 value={this.state.status}
+                onChange={this.ntkHandleChange}
              />
         </div>
-        <button className='btn btn-success'>Ghi lại</button>
+        <button className='btn btn-success'> onclick={this.ntkHandleSubmit}Ghi lại</button>
             </form>
     </div>
     )
