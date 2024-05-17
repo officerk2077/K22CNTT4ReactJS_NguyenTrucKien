@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'
+import NtkUseState from './components/NtkUseState'
+import NtkUseEffect from './components/NtkUseEffect'
+import NtkuseContext from './components/NtkuseContext'
+import './app.css'
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container border mt-3'>
+        <h1 className='text-center'>Nguyễn Trực Kiên - Hook</h1>
+        <hr/>
+        <NtkUseState />
+        <hr/>
+        <NtkUseEffect />
+        <hr/>
+        <NtkuseContext /> 
     </div>
-  );
+  )
 }
-
-export default App;
