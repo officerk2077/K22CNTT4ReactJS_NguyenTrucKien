@@ -1,6 +1,7 @@
 import {React, useState} from 'react';
 import './App.css';
 import NtkListProduct from './components/NtkListProduct';
+import NtkProductAddOrEdit from './components/NtkProductAddOrEdit';
 
 function NtkApp() {
   // mock data
@@ -28,11 +29,24 @@ function NtkApp() {
   // Sử dụng hàm useState của hook
   const [ntkListProduct, setNtkListProducts] = useState(ntk_Products)
 
+
+  const ntkHandleSubmit = (ntkProduct)=>{
+    console.log("AddOrEdit:",ntkProduct);
+    //Thêm vào ntkListProduct
+    setNtkListProducts(ntkprev =>{
+      return [
+        ...ntkprev,
+        ntkProduct
+      ]
+    })
+  }
   return (
-    <div className="container border mt-2">
-      <h1 className='text-center my-3'>Xử lý chức năng CRUD</h1>
+    <div className="container border mt-5 p-3">
+      <h1 className='text-center my-3'>Xử lý chức năng CRUD - Hook</h1>
       <hr/>
       <NtkListProduct renderNtkProducts = {ntkListProduct}/>
+      <hr/>
+      <NtkProductAddOrEdit ntkOnsubmit={ntkHandleSubmit}/>
     </div>
   );
 }
