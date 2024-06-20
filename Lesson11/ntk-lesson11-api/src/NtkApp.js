@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import NtkCategoryList from './components/NtkCategoryList';
 import axios from './api/NtkApi';
+import { NtkDelete } from './api/NtkApi';
 import NtkCategoryForm from './components/NtkCategoryForm';
-import { logDOM } from '@testing-library/react';
+
 
 function NtkApp() {
   // Lấy dữ liệu từ api
@@ -45,9 +46,13 @@ function NtkApp() {
     setNtkCateforyIsForm(false);
   }
   // Hàm xử lý sự kiện xoá một đối tượng category
-  const ntkHandleDel = (ntkId)=>{
+  const ntkHandleDel = async (ntkId)=>{
       console.log("App-Delete-ntkId:",ntkId);
-  }
+      await NtkDelete(ntkId)
+      let ntkDelete = ntkCategories.filter(x=>x.tvcId !== ntkId);
+      setNtkCategories(ntkDelete);
+      console.log("Deleted:",ntkDelete);
+      }
   return (
     <div className="container my-3 border">
       <h1 className='text-center'>NGUYỄN TRỰC KIÊN - Call API</h1>

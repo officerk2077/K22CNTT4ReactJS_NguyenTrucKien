@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NtkCategoryList({renderNtkCategory, onAddNew}) {
+export default function NtkCategoryList({renderNtkCategory, onAddNew, onNtkDelete}) {
   console.log("renderNtkCategory:",renderNtkCategory);
 
   let ntkCategoryElement = renderNtkCategory.map((ntkCategory,index) => {
@@ -11,7 +11,7 @@ export default function NtkCategoryList({renderNtkCategory, onAddNew}) {
         <td>{ntkCategory.ntkCategoryName}</td>
         <td>{ntkCategory.ntkCategoryStatus===true?"Hiển Thị":"Tạm Khóa"}</td>
         <td>
-            <button className='btn btn-danger' onClick={()=>ntkHandleDel(ntkCategory.ntkId)}>
+            <button className='btn btn-danger' onClick={()=>onNtkDelete(ntkCategory.ntkId)}>
               Delete
               </button>  
         </td>       
