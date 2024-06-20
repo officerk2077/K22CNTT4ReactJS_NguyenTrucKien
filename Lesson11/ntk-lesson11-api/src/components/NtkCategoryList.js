@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NtkCategoryList({renderNtkCategory, onAddNew, onNtkDelete}) {
+export default function NtkCategoryList({renderNtkCategory, onAddNew, onNtkDelete, onNtkEdit}) {
   console.log("renderNtkCategory:",renderNtkCategory);
 
   let ntkCategoryElement = renderNtkCategory.map((ntkCategory,index) => {
@@ -11,9 +11,14 @@ export default function NtkCategoryList({renderNtkCategory, onAddNew, onNtkDelet
         <td>{ntkCategory.ntkCategoryName}</td>
         <td>{ntkCategory.ntkCategoryStatus===true?"Hiển Thị":"Tạm Khóa"}</td>
         <td>
-            <button className='btn btn-danger' onClick={()=>onNtkDelete(ntkCategory.ntkId)}>
+            <button className='btn btn-danger' 
+                  onClick={()=>ntkHandleDel(ntkCategory.ntkId)}>
               Delete
               </button>  
+              <button className='btn btn-success'
+                  onClick={()=>ntkHandleEdit(ntkCategory)}>
+                Edit
+              </button>
         </td>       
       </tr>
     )
@@ -28,10 +33,15 @@ export default function NtkCategoryList({renderNtkCategory, onAddNew, onNtkDelet
     console.log("Delete:",ntkId);
     if(window.confirm('Bạn có thực sự muốn xoá Category có mã [' + ntkId + '] Không ?')){
       console.log("Delete:",ntkId);
+      onNtkDelete(ntkId)
     }else{
 
     }
     
+  }
+  // xử kiện cho nút sửa
+  const ntkHandleEdit = (ntkCategory)=>{
+    onNtkEdit(ntkCategory);
   }
   return (
     <div className='container m-2'>

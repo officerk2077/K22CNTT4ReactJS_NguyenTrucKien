@@ -62,7 +62,8 @@ function NtkApp() {
 
       <NtkCategoryList renderNtkCategory = {ntkCategories}
                         onAddNew={ntkHandleAddNew} 
-                        onNtkDelete={ntkHandleDel}/>
+                        onNtkDelete={ntkHandleDel}
+                        onNtkEdit={ntkHandleEdit}/>
       <hr/>
       {
         ntkCateforyIsFrom===true?
