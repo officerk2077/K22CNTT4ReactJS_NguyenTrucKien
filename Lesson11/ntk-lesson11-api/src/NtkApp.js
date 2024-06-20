@@ -25,14 +25,15 @@ function NtkApp() {
   },[])
 
   // trạng thái form 
-  const [ntkCateforyIsFrom, setNtkCateforyIsForm] = useState(false);
-
+  const [ntkCategoryIsFrom, setNtkCategoryIsForm] = useState(false);
+  // Dữ liệu form: add / edit
+  const [ntkCategoryEdit, setNtkCategoryEdit] = useState(true);
   const ntkHandleAddNew = (param) =>{
-    setNtkCateforyIsForm(param);
+    setNtkCategoryIsForm(param);
   }
 
   const ntkHandleCateforyCloseForm = (param) =>{
-    setNtkCateforyIsForm(param);
+    setNtkCategoryIsForm(param);
   }
 
   const ntkHandleCategorySubmit = (param) =>{
@@ -43,7 +44,7 @@ function NtkApp() {
     setNtkCategories((prev)=>{
       return[...prev];
     })
-    setNtkCateforyIsForm(false);
+    setNtkCategoryIsForm(false);
   }
   // Hàm xử lý sự kiện xoá một đối tượng category
   const ntkHandleDel = (ntkId)=>{
@@ -56,6 +57,12 @@ function NtkApp() {
       setNtkCategories(ntkDelete);
       console.log("Deleted:",ntkDelete);
       }
+
+      // Sửa category
+      const ntkHandleEdit = (ntkCategory)=>{
+        setNtkCategoryEdit(ntkCategory)
+        setNtkCategoryIsForm(true);  
+      }
   return (
     <div className="container my-3 border">
       <h1 className='text-center'>NGUYỄN TRỰC KIÊN - Call API</h1>
@@ -66,10 +73,11 @@ function NtkApp() {
                         onNtkEdit={ntkHandleEdit}/>
       <hr/>
       {
-        ntkCateforyIsFrom===true?
-        <NtkCategoryForm 
-        onCloseForm = {ntkHandleCateforyCloseForm} 
-        onCategorySubmit = {ntkHandleCategorySubmit}       
+        setNtkCategoryIsForm===true?<NtkCategoryForm
+                        renderNtkCategory   = {ntkCategoryEdit}
+                        onCloseForm = {ntkHandleCateforyCloseForm} 
+                        onCategorySubmit = {ntkHandleCategorySubmit}
+               
         />:""
       }
     </div>

@@ -1,25 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from '../api/NtkApi';
 
-export default function NtkCategoryForm({onCloseForm, onCategorySubmit}) {
+export default function NtkCategoryForm({onCloseForm, onCategorySubmit, renderNtkCategory}) {
     // state 
+    const [ntkId,setNtkId] = useState(0);
     const [ntkCategoryName,setNtkCategoryName] = useState("");
     const [ntkCategoryStatus,setNtkCategoryStatus] = useState(true);  
 
+
+    useEffect(()=>{
+        setNtkId(renderNtkCategory.ntkId);
+        setNtkCategoryName(renderNtkCategory.ntkCategoryName);
+        setNtkId(renderNtkCategory.ntkCategoryStatus);
+    });
     const ntkHandleClose = () => {
         onCloseForm(false);
     }
 
     const ntkHandleSubmit = async (event)=>{
         event.preventDefault();
-        let ntkCategory = {
+        console.log("ntkCategory",ntkCategory);
+        if(ntkId === 0){ //thêm
+          let ntkCategory = {
             ntkId:0,
             ntkCategoryName:ntkCategoryName,
             ntkCategoryStatus:ntkCategoryStatus
         }
-        console.log("ntkCategory",ntkCategory);
-        await axios.post("NtkCategory",ntkCategory)
-        onCategorySubmit(ntkCategory);
+          await axios.post("NtkCategory",ntkCategory)
+          onCategorySubmit(ntkCategory);
+        }else{ // sửa
+            let ntkCategory = {
+              ntkId:0,
+              ntkCategoryName:ntkCategoryName,
+              ntkCategoryStatus:ntkCategoryStatus
+          }
+          await axios.post("NtkCategory",ntkCategory)
+          onCategorySubmit(ntkCategory);
+        }
+
     }
 
   return (
