@@ -19,22 +19,24 @@ export default function NtkCategoryForm({onCloseForm, onCategorySubmit, renderNt
 
     const ntkHandleSubmit = async (event)=>{
         event.preventDefault();
-        console.log("ntkCategory",ntkCategory);
+        
         if(ntkId === 0){ //thêm
           let ntkCategory = {
             ntkId:0,
             ntkCategoryName:ntkCategoryName,
             ntkCategoryStatus:ntkCategoryStatus
         }
+          console.log("ntkCategory",ntkCategory);
           await axios.post("NtkCategory",ntkCategory)
           onCategorySubmit(ntkCategory);
         }else{ // sửa
             let ntkCategory = {
-              ntkId:0,
+              ntkId:ntkId,
               ntkCategoryName:ntkCategoryName,
               ntkCategoryStatus:ntkCategoryStatus
           }
-          await axios.post("NtkCategory",ntkCategory)
+          console.log("ntkCategory",ntkCategory);
+          await axios.put("NtkCategory",ntkCategory);
           onCategorySubmit(ntkCategory);
         }
 

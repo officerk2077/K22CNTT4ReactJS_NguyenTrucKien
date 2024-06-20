@@ -27,7 +27,12 @@ function NtkApp() {
   // trạng thái form 
   const [ntkCategoryIsFrom, setNtkCategoryIsForm] = useState(false);
   // Dữ liệu form: add / edit
-  const [ntkCategoryEdit, setNtkCategoryEdit] = useState(true);
+  let ntkCategoryInit = {
+    ntkId:0,
+    ntkCategoryName:"",
+    ntkCategoryStatus:true
+}
+  const [ntkCategoryEdit, setNtkCategoryEdit] = useState(ntkCategoryInit);
   const ntkHandleAddNew = (param) =>{
     setNtkCategoryIsForm(param);
   }
