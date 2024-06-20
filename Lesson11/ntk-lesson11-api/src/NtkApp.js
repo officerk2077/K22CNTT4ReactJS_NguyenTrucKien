@@ -46,9 +46,12 @@ function NtkApp() {
     setNtkCateforyIsForm(false);
   }
   // Hàm xử lý sự kiện xoá một đối tượng category
-  const ntkHandleDel = async (ntkId)=>{
+  const ntkHandleDel = (ntkId)=>{
       console.log("App-Delete-ntkId:",ntkId);
-      await NtkDelete(ntkId)
+      //xoá trên api
+      // const ntkResponse = axios.delete(`https://667125e1e083e62ee43a43ba.mockapi.io/ntkApi/ntkv1/NtkCategory/${ntkId}`,ntkId);
+      const ntkResponse = axios.delete(`NtkCategory/${ntkId}`,ntkId);
+      console.log("App-Delete-ntkId:",ntkId);
       let ntkDelete = ntkCategories.filter(x=>x.tvcId !== ntkId);
       setNtkCategories(ntkDelete);
       console.log("Deleted:",ntkDelete);
