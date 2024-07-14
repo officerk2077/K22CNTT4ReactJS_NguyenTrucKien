@@ -4,7 +4,7 @@ import axios from './ntk_apis/ntk-2210900033'
 
 export default function NtkApp() {
   // Đọc dữ liệu từ api
-  const {ntkListTableName,setNtkListTableName} = useState([])
+  const [ntkListTableName,setNtkListTableName] = useState([])
   const ntkGetTableName = async ()=>{
     let ntkResp = axios.get("ntkTableName");
     console.log(ntkResp.data);
