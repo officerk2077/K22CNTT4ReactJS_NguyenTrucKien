@@ -6,8 +6,8 @@ export default function NtkApp() {
   // Đọc dữ liệu từ api
   const [ntkListTableName,setNtkListTableName] = useState([])
   const ntkGetTableName = async ()=>{
-    let ntkResp = axios.get("ntkTableName");
-    console.log(ntkResp.data);
+    let ntkResp = await axios.get("ntkTableName");
+    console.log("App list:",ntkResp.data);
     setNtkListTableName(ntkResp.data);
   }
 
